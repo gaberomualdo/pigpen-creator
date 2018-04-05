@@ -3,14 +3,64 @@
 <head>
 	<meta charset="utf-8">
 	<title>Pigpen Creator</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
 </head>
+
+<style>
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto",sans-serif;
+}
+div.container {
+	text-align: center;
+}
+h1 {
+	font-size: 7.5vh;
+	line-height: 10vh;
+	padding: 2.5vh 0;
+}
+input,button {
+	font-size: 3.5vh;
+	line-height: 5vh;
+	padding: 0 0.75vh;
+	border: none;
+	border: 2px solid #ccc;
+	background-color: transparent;
+	outline: none;
+	transition: border-color 0.25s;
+}
+button {
+	cursor: pointer;
+}
+input {
+	width: 50%;
+}
+input:focus,button:hover {
+	border-color: #00f;
+}
+div#encoded {
+	display: block;
+	width: 87.5%;
+	margin: 0 6.25%;
+	min-height: 5vh;
+	padding: 2.5vh 0;
+}
+div#encoded img {
+	height: 4vh;
+	width: 4vh;
+	padding: 1vh;
+}
+</style>
 
 <body>
 	<div class="container">
 		<h1>Pigpen Creator</h1>
-		<input type="text" placeholder="Enter Text..." id='encodeText'>
+		<input type="text" placeholder="Enter Text..." id='encodeText' spellcheck='false'>
 		<div id="encoded"></div>
-		<button>Create Link</button>
+		<!--<button>Create Link</button>-->
 	</div>
 </body>
 
@@ -29,7 +79,11 @@ document.getElementById("encodeText").oninput = function(){
 	document.getElementById("encoded").innerHTML = "";
 	encodeText = encodeText.split("");
 	encodeText.forEach(function(item,index){
-		document.getElementById("encoded").innerHTML += "<img src='icons/" + item + ".png'>";
+		if(item == " "){
+			document.getElementById("encoded").innerHTML += "<img>";
+		}else{
+			document.getElementById("encoded").innerHTML += "<img src='icons/" + item + ".png'>";
+		}
 	});
 }
 
