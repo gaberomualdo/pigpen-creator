@@ -8,9 +8,31 @@
 <body>
 	<div class="container">
 		<h1>Pigpen Creator</h1>
-		<input type="text" placeholder="Enter Text...">
-		<div class="encoded"></div>
+		<input type="text" placeholder="Enter Text..." id='encodeText'>
+		<div id="encoded"></div>
 		<button>Create Link</button>
 	</div>
 </body>
+
+<script>
+
+var allowed = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm ".split("");
+
+document.getElementById("encodeText").onkeypress = function(e){
+	if(allowed.indexOf(String.fromCharCode(e.keyCode)) == -1){
+		e.preventDefault();
+	}
+}
+
+document.getElementById("encodeText").oninput = function(){
+	var encodeText = document.getElementById("encodeText").value;
+	document.getElementById("encoded").innerHTML = "";
+	encodeText = encodeText.split("");
+	encodeText.forEach(function(item,index){
+		document.getElementById("encoded").innerHTML += "<img src='icons/" + item + ".png'>";
+	});
+}
+
+</script>
+
 </html>
